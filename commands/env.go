@@ -200,7 +200,7 @@ func generateUsageHint(userShell string, args []string) string {
 	case "fish":
 		cmd = fmt.Sprintf("eval (%s)", commandLine)
 	case "powershell":
-		cmd = fmt.Sprintf("%s | Invoke-Expression", commandLine)
+		cmd = fmt.Sprintf("& \"%s\" %s | Invoke-Expression", args[0], strings.Join(args[1:], " "))
 	case "cmd":
 		cmd = fmt.Sprintf("\tFOR /f \"tokens=*\" %%i IN ('%s') DO %%i", commandLine)
 		comment = "REM"
